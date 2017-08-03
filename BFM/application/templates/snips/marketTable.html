@@ -1,0 +1,37 @@
+<div class="table-responsive col-xs-12">
+    <table class="table" 
+           id="marketTable">
+    
+    <thead class= "thead">
+      <tr>
+         {% for entry in config["table_entry"] %}
+          <th style = "border: 1px 
+                               solid 
+                               black;
+                       border-radius: 5px "> {{entry["header"]}} 
+          </th>
+        {% endfor %}
+      </tr>
+    </thead>
+    
+    <tbody>
+      {% for market in markets %}
+        <tr>
+          <td>
+            <a href="/manager/open/{{market.MID}}/">{{market.date}}</a>
+          </td>
+          <td style="width: 15%;
+                     max-width: 25px;  
+                     white-space: nowrap;
+                     overflow: hidden;">{{market.location}}</td>
+          <td> {{market.customer_count}} </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    
+  </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() { $('#marketTable').DataTable(); } );
+</script>

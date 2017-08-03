@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+ <h1 class="text-center"><strong> Market Dates </strong></h1>
+ <div class="col-lg-11">
+    <a href="manager/addMarket"><button class="btn btn-default"> Add a Market Date </button></a></div>
+    {% include "/snips/marketTable.html" %}
+</div>
+<script type="text/javascript">
+ $('#marketTable').dataTable( {
+  "pagingType": "simple_numbers",
+  "bLengthChange": false,
+  "order": [[ 2, "desc" ]],
+  "info":false,
+
+} );
+
+</script>
+{% endblock %}

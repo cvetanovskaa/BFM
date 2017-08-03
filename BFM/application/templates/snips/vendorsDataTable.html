@@ -1,0 +1,48 @@
+<div class="table-responsive col-xs-12">
+    <table class="table" 
+           id="vendorsDataTable">
+    
+    <thead class= "thead">
+      <tr>
+         {% for entry in config["vendorTable"] %}
+          <th style = "border: 1px 
+                               solid 
+                               black;
+                       border-radius: 5px "> {{entry["header"]}} 
+          </th>
+        {% endfor %}
+      </tr>
+    </thead>
+    
+    <tbody>
+      {% for vendor in vendors %}
+        <tr>
+          <td>
+            {{vendor.vendor_type}}</a>
+          </td>
+          <td>{{vendor.plant_sales}}</td>
+          <td>{{vendor.art_craft_sales}}</td>
+          <td>{{vendor.processed_sales}}</td>
+          <td>{{vendor.produced_sales}}</td>
+          <td>{{vendor.fiber_sales}}</td>
+          {% if vendor.other_description %}
+          <td>{{vendor.other_description}}</td>
+          {% else %}
+            <td> / </td>
+          {% endif %}
+          {% if vendor.other_sales %}
+          <td> {{vendor.other_sales}} </td>
+          {% else %}
+          <td> / </td>
+          {% endif %}
+          <td><a href="/vendor/open/{{vendor.VMID}}/"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    
+  </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() { $('#vendorsDataTable').DataTable(); } );
+</script>

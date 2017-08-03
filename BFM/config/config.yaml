@@ -1,0 +1,84 @@
+# CONFIGURATION
+# Top-level keys are categorical; where possible, introduce
+# new top-level keys to keep constants/ideas separate.
+# Note that we parse this with the configuration library,
+# which has some fancy extensions to allow referencing between
+# different elements in the YAML file.
+# See http://configure.readthedocs.io/en/latest/#
+application:
+  title: "The Template App"
+  default: index
+  tokenTimeout: 10
+  url: "bfm-cody-myers.c9users.io:8080"
+  
+
+databases:
+  bfm:
+    filename: data/bfm.sqlite
+sys:
+  debug: True
+  host: "0.0.0.0"
+  port: 8082
+
+vendorMenu:
+  - title: "Login"
+    link: "/getemail"
+    
+managerMenu:
+  - title: "Home"
+    link:  "/marketView"
+  - title: "Manager Form"
+    link: "/manager/managerForm"
+vendorTable:
+  - header: "Vendor Type"
+  - header: "Plant Sales"
+  - header: "Art/Craft Sales"
+  - header: "Processed Sales"
+  - header: "Produced Food Sales"
+  - header: "Fiber Sales"
+  - header: "Other description"
+  - header: "Other Sales" 
+  - header: "Edit"    
+table_entry:
+  - header: "Date"
+  - header: "Location"
+  - header: "Customer Count"
+managerDataTable:
+  - header: "Location"
+  - header: "Event"
+  - header: "Weather"
+  - header: "Special Comments"
+  - header: "Customer Count"
+  - header: "Edit"
+vendorTypes:
+  - header: "Farmer"
+  - header: "Artisan"
+  - header: "Processed Food Vendor"
+  
+  
+vendorList:
+  - option: "Back to Garden"
+  - option: "Bee Dreamer Creations"
+  - option: "Best Family Farm"
+  - option: "Bill Lennox"
+  - option: "Cedar Cliff Greenhouse"
+  - option: "Chestnut Ridge Farm"
+  - option: "Cleaning Thyme"
+  - option: "Clementine Bakery"
+  - option: "Dave's Green Thumb"
+  - option: "Flindt Family Farm"
+  - option: "Florabread"
+  - option: "Good Life Glowers"
+  - option: "Happy Bottom/Letek"
+  - option: "Harmony Dawn"
+  - option: "Honey Bee Acres"
+  - option: "Hoot n Holler Farms"
+  
+flask:
+  # Secret key for signing cookies
+  # Only needed for admin module, and we don't seem to rely on
+  # it. Hence, we will randomly generate a key.
+  secretKey: RANDOM
+  
+signature: "Berea Farmer's Market"
+

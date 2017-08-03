@@ -1,0 +1,37 @@
+<div class="table-responsive col-xs-12">
+    <table class="table" 
+           id="managerDataTable">
+    
+    <thead class= "thead">
+      <tr>
+         {% for entry in config["managerDataTable"] %}
+          <th style = "border: 1px 
+                               solid 
+                               black;
+                       border-radius: 5px "> {{entry["header"]}} 
+          </th>
+        {% endfor %}
+      </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+          <td>
+            {{managerForm.location}}</a>
+          </td>
+          <td>
+            {{managerForm.event}}</a>
+          </td>
+          <td>{{managerForm.weather}}</td>
+          <td>{{managerForm.comments}}</td>
+          <td>{{managerForm.customer_count}}</td>
+          <td><a href="/vendor/open/{{managerForm.MID}}/"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+        </tr>
+    </tbody>
+    
+  </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() { $('#managerDataTable').DataTable(); } );
+</script>

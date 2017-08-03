@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block body %}
+<!-- Beginning -->
+<body>
+<h1 class="text-center">Vendor's Form</h1>
+  <body>
+    <center>
+      <div>
+         <form method="POST" class="form">
+            <h3><strong>Sales</strong></h3>
+              <div class="input-group">
+                <h4><strong>Select Market Date</strong></h4>
+                <select class="form-control" name="MID" id="MID" Date required>
+                  <option selected disabled hidden style='display: none' value=''>---</option>
+                    {% for market in marketTimes %}
+                      <option value = "{{market.MID}}"
+                      {% if form != 0 %}
+                        {% if form.MID == market.MID %}
+                          selected
+                        {% endif %}
+                  {% endif %}
+                      > {{market.date}} </option>
+                    {% endfor %}  
+                </select>
+              </div>
+              <div class="input-group">
+                <h4><strong> Choose all that applies:  </strong></h4>
+                <select class="selectpicker form-control" 
+                        title="-- Vendor Type --"
+                        name="vendorList" 
+                        required
+                        multiple>
+                  {% for type in config['vendorTypes'] %}
+                  <option  value="{{type['header']}}">
+                    {{type['header']}}
+                  </option>
+                  {% endfor %}
+                 </select>
+                 <br>
+              </div>
+            <h4><strong>Money Earned from Sale Type</strong></h4>
+              <div class="input-group">
+                <span class="input-group-addon" style="height: 46px; width: 150px"><strong>Produced Food: $</strong></span>
+                <input type="number" step="any" 
+                {% if form != 0 %}
+                  value="{{form.produced_sales}}"
+                  {% endif %}
+                placeholder='0.00' class="form-control" arial-label="Amount (to the nearest dollar)" name="producedSales" required>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" style="height: 46px; width: 150px"><strong>Plant: $</strong></span>
+                <input type="number" step="any" 
+                {% if form != 0 %}
+                  value="{{form.plant_sales}}"
+                  {% endif %}
+                placeholder='0.00' class="form-control" name="plantSales" arial-label="Amount (to the nearest dollar)" required>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" style="height: 46px; width: 150px"><strong>Art/Craft: $</strong></span>
+                <input type="number" step="any" 
+                {% if form != 0 %}
+                  value="{{form.art_craft_sales}}"
+                  {% endif %}
+                placeholder='0.00' class="form-control" name="artCraftSales" arial-label="Amount (to the nearest dollar)" required>
+              </div>
+              <div class="input-group">  
+                <span class="input-group-addon" style="height: 46px; width: 150px"><strong>Processed Food: $</strong></span>
+                <input type="number" step="any" 
+                {% if form != 0 %}
+                  value="{{form.processed_sales}}"
+                  {% endif %}
+                placeholder='0.00' class="form-control" name="processedSales" arial-label="Amount (to the nearest dollar)" required>
+              </div>
+              <div class="input-group">  
+                <span class="input-group-addon" style="height: 46px; width: 150px"><strong>Fiber: $</strong></span>
+                <input type="number" step="any" 
+                {% if form != 0 %}
+                  value="{{form.fiber_sales}}"
+                  {% endif %}
+                placeholder='0.00' class="form-control" name="fiberSales" arial-label="Amount (to the nearest dollar)" required>
+              </div>
+          <div style="padding-top: 25px;">
+            <button type="submit" class="btn btn-default" value="submit">Submit Form</button>
+            <button type="reset"  class="btn btn-default" value= "reset">Reset Form</button>
+          </div>
+        </form>
+      </div>
+  </center>
+</body>
+{% endblock %}

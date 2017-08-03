@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    <form method="POST">
+{% if date == 0 %}
+        <div class="container">
+    <br><br><br>
+    <div class="col-lg-6 col-lg-push-3">
+    <h3> Please choose a market date: </h3>
+    <select class="form-control col-md-4" name="MID" required>
+                    {% for market in markets %}
+                      <option value = "{{market.MID}}"
+                      > {{market.date}} </option>
+                    {% endfor %}  
+                </select>
+     <div class="pull-right">
+    <br>
+    <button type="submit" name="postForm" value="select" class="btn btn-default">Select</button>
+    </div>
+    </div>
+</div>
+{% elif date==1 %}
+<div class="container">
+    <h1 class="text-center"> Daily Berea Farmers Market Report </h1>
+    <div class="text-center">
+        <h3> Date: {{market.date}}</h3>
+        <input type="hidden" name="date" value="{{market.date}}">
+    </div>
+    <br>
+    <div class="col-lg-6">
+        <label> Event: </label>
+        <input type="text" class="form-control" value="{{market.event}}" name="event">
+    </div>
+    <div class="col-lg-6">
+        <label> Weather: </label>
+        <input type="text" class="form-control" value="{{market.weather}}"name="weather">
+    </div>
+    <div class="col-lg-12">
+        <br>
+        <label> Special Comments: </label>
+        <textarea class = "form-control" 
+                              name = "specialComments" 
+                              rows = "3"
+                              >{{market.comments}}</textarea>
+    </div>
+    <div class="col-lg-12">
+        <h4><strong>Vendor List</strong></h4>
+        <div> 
+                <select class="selectpicker form-control" 
+                        title="-- Vendors --"
+                        name="vendorList" 
+                        multiple>
+                  {% for type in config['vendorList'] %}
+                  <option  value="{{type['option']}}">
+                    {{type['option']}}
+                  </option>
+                  {% endfor %}
+                 </select></div>
+    </div>
+    <div class="col-lg-12">
+        <h4><strong>Vendor Type</strong></h4>
+        <div class="col-lg-2">
+         <label> Farmers: </label>
+         <input type="number" min="0" class="form-control" name="farmers">
+        </div><div class="col-lg-2">
+         <label> Artisans: </label>
+        <input type="number" min="0"class="form-control" name="artisans">
+        </div><div class="col-lg-2">
+         <label> Processed Food: </label>
+        <input type="number" min="0" class="form-control" name="processedFood">
+        </div>
+        <div class="col-lg-2 col-lg-push-4">
+        <div class="pull-right">
+        <label> Customer Count: </label>
+        <input type="number" min="0" class="form-control" name="customerCount"></div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <h4><strong>Sales</strong></h4> <em><h5> (Amounts to nearest dollar) </h5></em>
+        <br>
+        <div class="col-lg-2">
+         <label> Processed Food: $</label>
+         <span class="form-control">{{processed_sales}}</span>
+        </div><div class="col-lg-2">
+         <label> Produced Food: $</label>
+        <span class="form-control" name="craftSales">{{produced_sales}}</span>
+        </div><div class="col-lg-2">
+         <label> Plant: $</label>
+        <span class="form-control" name="processedFoodSales">{{plant_sales}}</span>
+        </div><div class="col-lg-2">
+         <label> Art/Craft: $</label>
+        <span class="form-control" name="processedFoodSales">{{art_craft_sales}}</span>
+        </div><div class="col-lg-2">
+         <label> Fiber: $</label>
+        <span class="form-control" name="processedFoodSales">{{fiber_sales}}</span>
+        </div>
+        <div class="col-lg-2 ">
+        <div class="pull-right">
+        <label> Total Sales: $</label>
+        <span class="form-control" name="totalSales">{{total}}</span>
+        </div>
+        </div>
+    </div>
+    <div class="pull-right">
+    <br>
+    <button type="submit" name="postForm" value="submit" class="btn btn-default">Post</button>
+    </div>
+{% endif %}
+    </form>
+</div>
+</div>
+{% endblock %}

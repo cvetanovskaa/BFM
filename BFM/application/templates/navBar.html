@@ -1,0 +1,18 @@
+<!-- This is the navigation bar that is found at the top of each user page -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<ul class="nav navbar-nav">
+  {% if isManager %}
+    {% set navigation = 'managerMenu' %}
+  {% else %}
+    {% set navigation = 'vendorMenu' %}
+  {% endif %}
+  {% for menuItem in config[navigation] %}
+    <li>
+      <a class="nav-tabs" href="{{menuItem['link']}}">
+        {{menuItem['title']}}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+</nav>
+
